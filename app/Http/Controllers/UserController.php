@@ -57,6 +57,24 @@ class UserController extends Controller
         }
     }
 
+    public function updateUser(Request $request, $id)
+    {
+        try {
+
+            $updateUser = $this->findUser($id);
+
+            if (!$updateUser) {
+                return response()->json(['message' => 'User not found'], 404);
+            }
+
+            return response()->json(['message' => 'User found successfully', 'user' => $updateUser], 201);
+
+        } catch (\Exception $e) {
+            Log::error('Error occurred while found user:', ['error' => $e->getMessage()]);
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+
     public function deleteUser(Request $request, $id)
     {
         try {
