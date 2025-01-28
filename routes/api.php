@@ -11,3 +11,7 @@ Route::get('/user', function (Request $request) {
 Route::get('/get-user', [UserController::class, 'getUser']);
 
 Route::post('/post-user', [UserController::class, 'storeUser']);
+
+Route::get('/find-user/{id}', [UserController::class, 'findUser']);
+
+Route::delete('/delete-user/{id}', [UserController::class, 'deleteUser']);
