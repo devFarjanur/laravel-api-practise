@@ -50,7 +50,6 @@ class UserController extends Controller
 
             $findUser = User::find($id);
             return response()->json(['message' => 'User found successfully', 'user' => $findUser], 201);
-
         } catch (\Exception $e) {
             Log::error('Error occurred while found user:', ['error' => $e->getMessage()]);
             return response()->json(['message' => $e->getMessage()], 500);
@@ -66,6 +65,12 @@ class UserController extends Controller
             if (!$updateUser) {
                 return response()->json(['message' => 'User not found'], 404);
             }
+
+            $updateUser = User::update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
 
             return response()->json(['message' => 'User found successfully', 'user' => $updateUser], 201);
 
