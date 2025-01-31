@@ -47,9 +47,9 @@ class UserController extends Controller
     public function findUser($id)
     {
         try {
-
-            $findUser = User::find($id);
-            return response()->json(['message' => 'User found successfully', 'user' => $findUser], 201);
+            return User::find($id);
+            // $findUser = User::find($id);
+            // return response()->json(['message' => 'User found successfully', 'user' => $findUser], 201);
         } catch (\Exception $e) {
             Log::error('Error occurred while found user:', ['error' => $e->getMessage()]);
             return response()->json(['message' => $e->getMessage()], 500);
