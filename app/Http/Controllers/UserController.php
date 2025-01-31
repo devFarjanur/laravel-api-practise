@@ -72,7 +72,7 @@ class UserController extends Controller
                 'password' => bcrypt($request->password),
             ]);
 
-            return response()->json(['message' => 'User found successfully', 'user' => $updateUser], 201);
+            return response()->json(['message' => 'User update successfully', 'user' => $updateUser], 201);
 
         } catch (\Exception $e) {
             Log::error('Error occurred while found user:', ['error' => $e->getMessage()]);
